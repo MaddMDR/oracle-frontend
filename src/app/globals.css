@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --topbar-h: 56px;
+  --sidebar-w: 232px;
+  --sidebar-w-collapsed: 60px;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  background: #0a0c12;
+  color: #e6e9f0;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Subtle ambient depth — no grid/scanline gimmickry */
+body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,168,87,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(91,157,217,0.03) 0%, transparent 55%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.font-mono, code, pre, .tnum { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1c2230; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2a3142; }
+.thin-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+
+/* ── Focus ──────────────────────────────────────────────── */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px #0a0c12, 0 0 0 3px rgba(212,168,87,0.5);
+  border-radius: 4px;
+}
+
+/* ── Component utilities ────────────────────────────────── */
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-md shadow-e1;
+  }
+  .card-interactive {
+    @apply card transition-all duration-150 ease-standard hover:bg-surface-2 hover:border-border-2;
+  }
+  .eyebrow {
+    @apply text-micro font-medium uppercase text-fg-faint;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply relative overflow-hidden bg-surface-2 rounded;
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute; inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+}
+
+/* ── Live status dot ───────────────────────────────────── */
+.live-dot {
+  position: relative;
+  width: 7px; height: 7px; border-radius: 9999px;
+}
+.live-dot::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 9999px;
+  background: currentColor; opacity: 0.25;
+  animation: livepulse 2s ease-in-out infinite;
+}
+
+/* ── Link underline ─────────────────────────────────────── */
+.link-underline { position: relative; }
+.link-underline::after {
+  content: ''; position: absolute;
+  bottom: -1px; left: 0; right: 0; height: 1px;
+  background: currentColor;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.2,0.6,0.2,1);
+}
+.link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ── Legacy compat (v1 pages) ───────────────────────────── */
+.font-display { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.015em; }
+.font-display-italic { font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-style: normal; }
+.scanlines { /* gimmick removed — kept as no-op so layout class is harmless */ }
+@keyframes pulse-gold { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" rx="10" fill="#0a0e1a"/>
+
+  <!-- Eye outline -->
+  <ellipse cx="32" cy="32" rx="20" ry="12" fill="none" stroke="#d4af37" stroke-width="2.2"/>
+
+  <!-- Candlestick body — left (acts as left wick/eyelash) -->
+  <rect x="9.5" y="27.5" width="3" height="9" rx="0.5" fill="#d4af37"/>
+  <!-- top wick -->
+  <line x1="11" y1="27.5" x2="11" y2="23" stroke="#d4af37" stroke-width="1.4"/>
+  <!-- bottom wick -->
+  <line x1="11" y1="36.5" x2="11" y2="41" stroke="#d4af37" stroke-width="1.4"/>
+
+  <!-- Candlestick body — right -->
+  <rect x="51.5" y="27.5" width="3" height="9" rx="0.5" fill="#d4af37"/>
+  <!-- top wick -->
+  <line x1="53" y1="27.5" x2="53" y2="23" stroke="#d4af37" stroke-width="1.4"/>
+  <!-- bottom wick -->
+  <line x1="53" y1="36.5" x2="53" y2="41" stroke="#d4af37" stroke-width="1.4"/>
+
+  <!-- Inner concentric rings (iris) -->
+  <circle cx="32" cy="32" r="8.5" fill="none" stroke="#d4af37" stroke-width="0.9" opacity="0.55"/>
+  <circle cx="32" cy="32" r="5.5" fill="none" stroke="#d4af37" stroke-width="0.7" opacity="0.35"/>
+
+  <!-- Diamond pupil -->
+  <polygon points="32,25.5 37.5,32 32,38.5 26.5,32" fill="#d4af37"/>
+</svg>
